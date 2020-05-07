@@ -1,5 +1,6 @@
 package com.javavirus.sms.main.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,10 @@ public class StudentController {
 	@GetMapping("/registration")
 	public String reg(Map<String, Object> model) {
 		model.put("student", new StudentDTO());
+		Map<String, String> gender = new HashMap<>();
+		gender.put("Male", "Male");
+		gender.put("Female", "Female");
+		model.put("genders", gender);
 		return "Registration";
 	}
 	
@@ -51,6 +56,10 @@ public class StudentController {
 	public String editStudent(@RequestParam("id") String id, Map<String, Object> model) {
 		StudentDTO studentDTO = studentService.editStudent(Long.parseLong(id));
 		model.put("student", studentDTO);
+		Map<String, String> gender = new HashMap<>();
+		gender.put("Male", "Male");
+		gender.put("Female", "Female");
+		model.put("genders", gender);
 		return "Registration";
 	}
 	

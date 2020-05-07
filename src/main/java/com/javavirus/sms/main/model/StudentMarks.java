@@ -18,11 +18,11 @@ public class StudentMarks {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "student_id")
 	private Student student;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "exam_id")
 	private Exam exam;
 
@@ -53,7 +53,7 @@ public class StudentMarks {
 	@Column(name = "grade")
 	private String grade;
 	
-	@Column(name = "rank")
+	@Column(name = "mrank")
 	private String rank;
 
 	public StudentMarks() {

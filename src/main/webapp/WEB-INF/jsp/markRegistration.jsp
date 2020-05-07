@@ -108,7 +108,7 @@ function calculate(){
     </tr>
     <tr>
         <td>Exam :</td>
-        <td><form:select size="20px" path="exam.id" id="exam.id" items="${examObjs}"/></td>
+        <td><form:select path="exam.id" id="exam.id" items="${examObjs}"/></td>
     </tr>
     <tr>
         <td>Tamil :</td>

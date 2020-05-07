@@ -7,8 +7,21 @@
 <style><%@include file="/WEB-INF/css/w3sms.css"%>
 
 </style>
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 
-
+<script>
+function ageCalculate(){
+     var bday=document.getElementById('dob').value;
+     var today = new Date();
+     var birthDate = new Date(bday);
+     var age = today.getFullYear() - birthDate.getFullYear();
+     var m = today.getMonth() - birthDate.getMonth();
+     if (today.getMonth() < birthDate.getMonth() || (today.getMonth() == birthDate.getMonth() && today.getDate() < birthDate.getDate())) {
+         age--;
+     }
+     document.getElementById('age').value=age; 
+ }
+</script>
 </head>
 <body >
 <div style="background-size: 80%; background-image: linear-gradient(to right, orange , yellow);">
@@ -45,11 +58,12 @@
     </tr>
     <tr>
         <td>DOB :</td>
-        <td><form:input path="dob" id="dob" /></td>
+        <td><form:input type="date" path="dob" id="dob"  /></td>
     </tr>
     <tr>
         <td>Age :</td>
-        <td><form:input path="age" id="age"/></td>
+        <td><form:input path="age" id="age"/> &nbsp;
+        	<input type="button" value="Calculate" onclick="ageCalculate()" /></td>
     </tr>
     <tr>
         <td>Email ID :</td>
@@ -61,7 +75,7 @@
     </tr>
      <tr>
         <td>Gender :</td>
-        <td><form:input path="gender"  id="gender"/></td>
+        <td><form:select path="gender" items="${genders}"  id="gender"/></td>
     </tr>
      <tr>
         <td>Address :</td>

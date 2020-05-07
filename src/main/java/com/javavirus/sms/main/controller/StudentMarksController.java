@@ -62,7 +62,6 @@ public class StudentMarksController {
 	@GetMapping("/marklist")
 	public String listOfStudentMarks(Model model) {
 		List<StudentMarksDTO> studentMarksList = studentMarksService.getAllStudentMarks();
-		System.out.println("studentMarksList link"+studentMarksList.size());
 		List<StudentDTO> studentList = studentService.getAllStudents();
 		List<ExamDTO> examList = examService.getAllExams();
 		model.addAttribute("studentMarksList", studentMarksList);
@@ -81,6 +80,20 @@ public class StudentMarksController {
 	public String editStudentMarks(@RequestParam("id") String id, Map<String, Object> model) {
 		StudentMarksDTO studentMarksDTO = studentMarksService.editStudentMarks(Long.parseLong(id));
 		model.put("studentMarks", studentMarksDTO);
+		
+		Map<Long, String> studentList = new HashMap<>();
+		 Map<Long, String> examList = new HashMap<>();
+		 List<StudentDTO> studentListDTO = studentService.getAllStudents();
+		 for(StudentDTO studentDTO : studentListDTO) {
+			 studentList.put(studentDTO.getId(), studentDTO.getFullName());
+		 }
+		 List<ExamDTO> examListDTO = examService.getAllExams();
+		 for(ExamDTO examDTO : examListDTO) {
+			 examList.put(examDTO.getId(), examDTO.getExamName());
+		 }
+		 model.put("studentObjs",studentList);
+		 model.put("examObjs",examList);
+		 
 		return "markRegistration";
 	}
 	
